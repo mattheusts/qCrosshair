@@ -1,0 +1,31 @@
+<RCC>
+    <qresource prefix="/">
+        <file>dots/blue_default.png</file>
+        <file>dots/blue_default_dot.png</file>
+        <file>dots/blue_dot.png</file>
+        <file>dots/blue_ring.png</file>
+        <file>dots/cod crosshair.png</file>
+        <file>dots/green_default.png</file>
+        <file>dots/green_default_dot.png</file>
+        <file>dots/green_dot.png</file>
+        <file>dots/green_ring.png</file>
+        <file>dots/hitmarker_crosshair.png</file>
+        <file>dots/lightblue_default.png</file>
+        <file>dots/lightblue_default_dot.png</file>
+        <file>dots/lightblue_dot.png</file>
+        <file>dots/lightblue_ring.png</file>
+        <file>dots/pink_dot.png</file>
+        <file>dots/pink_ring.png</file>
+        <file>dots/red_default.png</file>
+        <file>dots/red_default_dot.png</file>
+        <file>dots/red_defaultlarge.png</file>
+        <file>dots/red_defaultlarge_dot.png</file>
+        <file>dots/red_dot.png</file>
+        <file>dots/red_ring.png</file>
+        <file>dots/white.png</file>
+        <file>dots/white_default.png</file>
+        <file>dots/white_default_dot.png</file>
+        <file>dots/yellow_dot.png</file>
+        <file>dots/yellow_ring.png</file>
+    </qresource>
+</RCC>

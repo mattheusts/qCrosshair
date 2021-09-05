@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icon/QDot.ico</file>
+    </qresource>
+</RCC>
