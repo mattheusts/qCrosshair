@@ -1,22 +1,16 @@
 #include "qdot.h"
 #include "ui_qdot.h"
 
-//   settings
-// values:
-//    height: height to dot
-//    width: width to dot
-//    Size: size of doto
-//    dot: name of dot
-
-
 QDot::QDot(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::QDot)
 {
     ui->setupUi(this);
     this->setFixedSize(QSize(250, 200));
-    setWindowFlags(Qt::WindowMinimizeButtonHint);
-    this->setWindowState(Qt::WindowMinimized);
+
+//    Show minimized window
+//    setWindowFlags(Qt::WindowMinimizeButtonHint);
+//    this->setWindowState(Qt::WindowMinimized);
 
     screen = QApplication::desktop()->screen();
     settings = new QSettings("QDot", QSettings::IniFormat);
@@ -52,6 +46,7 @@ QDot::~QDot()
     delete crosshair;
     delete desktop;
     delete label;
+    delete dots;
     delete ui;
 }
 
@@ -71,10 +66,19 @@ void QDot::set_default_options() {
     const int size = 20;
     QString dot = ":/dots/blue_default.png";
 
-    settings->setValue("width", width);
-    settings->setValue("height", height);
-    settings->setValue("size", size);
-    settings->setValue("dot", dot);
+    ui->width->setText(QString::number(width));
+    ui->height->setText(QString::number(height));
+    ui->size->setText(QString::number(size));
+    ui->comboBoxIcons->setCurrentIndex(0);
+
+    options->height = height;
+    options->width = width;
+    options->size = size;
+    options->dot = dot;
+
+    set_settings(options);
+
+    emit crosshair->update();
 }
 
 
