@@ -14,6 +14,7 @@ find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
+set(GUI_TYPE WIN32)
 
 add_executable(qCrosshair main.cpp src/qdot.h src/qdot.cpp src/crosshair.h src/crosshair.cpp src/dots.h src/qdot.ui dots.qrc icon.qrc)
 target_link_libraries(qCrosshair
