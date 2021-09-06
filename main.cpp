@@ -1,4 +1,4 @@
-#include "qdot.h"
+#include "src/qdot.h"
 #include <QApplication>
 #include <QMainWindow>
 #include <QLabel>
@@ -6,7 +6,6 @@
 #include <QDesktopWidget>
 #include <QDebug>
 #include <QSystemTrayIcon>
-#include <QMdiSubWindow>
 #include <QAction>
 #include <QMenu>
 #include <QPainter>

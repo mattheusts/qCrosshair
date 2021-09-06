@@ -26,17 +26,11 @@ QDot::QDot(QWidget *parent)
     this->load_settings(options);
 
 //    List all crosshair in comboBox
-    QDir dir(":/dots/");
-    dir.setSorting(QDir::SortFlag::Name);
-
-    QDirIterator it(dir);
-    int index = 0;
-    while (it.hasNext()) {
-        this->ui->comboBoxIcons->addItem(QIcon(it.next()), "");
-        if (it.next() == options->dot)
-            this->ui->comboBoxIcons->setCurrentIndex(index);
-
-        index++;
+    dots = load_icons();
+    for (auto d: *dots) {
+        this->ui->comboBoxIcons->addItem(QIcon(d.path), "");
+        if (d.path == options->dot)
+            this->ui->comboBoxIcons->setCurrentIndex(d.id);
     }
 
     if (options->width == 0 && options->height == 0) {
@@ -126,13 +120,15 @@ Crosshair *QDot::get_crosshair() {
     return this->crosshair;
 }
 
-
 void QDot::on_set_clicked() {
     options->height = ui->height->text().toFloat();
     options->width = ui->width->text().toFloat();
     options->size = ui->size->text().toInt();
 
+    const int index =  ui->comboBoxIcons->currentIndex();
+    TDot dot = dots->at(index);
+    options->dot = dot.path;
+
     set_settings(options);
-    qDebug() << "set and update";
     emit crosshair->update();
 }

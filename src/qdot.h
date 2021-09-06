@@ -1,11 +1,13 @@
 #ifndef QDOT_H
 #define QDOT_H
 
+#include <memory>
 #include <QDesktopWidget>
 #include <QColorDialog>
 #include <QMainWindow>
 #include <QSettings>
 #include <QMetaEnum>
+#include <QList>
 #include <QDirIterator>
 #include <QDebug>
 
@@ -19,7 +21,6 @@ QT_END_NAMESPACE
 class QDot : public QMainWindow
 {
     Q_OBJECT
-    Q_ENUMS(DOT)
 
 public:
     QDot(QWidget *parent = nullptr);
@@ -44,6 +45,7 @@ private:
     QWidget *screen;
     Options *options;
     QLabel *label;
+    QList<TDot> *dots;
     QDesktopWidget *desktop;
     Crosshair *crosshair;
 };
