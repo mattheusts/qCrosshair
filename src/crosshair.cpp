@@ -21,8 +21,8 @@ void Crosshair::render_crosshair_dot(Options *options) {
     QRect rectScreen;
     rectScreen = desktop->screenGeometry(screenNumber);
 
-    x = rectScreen.x() + rectScreen.width() / 2 - options->size / 2 ;
-    y = rectScreen.y() + rectScreen.height() / 2 - options->size / 2 ;
+    x = rectScreen.x() + options->width - options->size / 2 ;
+    y = rectScreen.y() + options->height - options->size / 2 ;
 
     label->setAttribute(Qt::WA_TranslucentBackground);
     label->setAttribute(Qt::WA_TransparentForMouseEvents);
@@ -30,5 +30,4 @@ void Crosshair::render_crosshair_dot(Options *options) {
     label->setGeometry( x, y, options->size, options->size );
     label->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint | Qt::SubWindow);
     label->show();
-    qDebug() << "render";
 }

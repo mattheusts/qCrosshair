@@ -9,7 +9,6 @@
 #include <QMetaEnum>
 #include <QList>
 #include <QDirIterator>
-#include <QDebug>
 
 #include "crosshair.h"
 #include "dots.h"

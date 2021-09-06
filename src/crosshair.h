@@ -2,7 +2,6 @@
 #define CROSSHAIR_H
 
 #include <QDesktopWidget>
-#include <QDebug>
 #include <QLabel>
 
 #include "dots.h"
