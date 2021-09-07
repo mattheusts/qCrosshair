@@ -15,7 +15,7 @@ QDot::QDot(QWidget *parent)
     screen = QApplication::desktop()->screen();
     settings = new QSettings("QDot", QSettings::IniFormat);
 
-//     load old options
+//     load saved options
     options = new Options();
     this->load_settings(options);
 
@@ -43,7 +43,6 @@ QDot::~QDot()
     delete settings;
     delete screen;
     delete options;
-    delete crosshair;
     delete desktop;
     delete label;
     delete dots;
@@ -58,7 +57,6 @@ void QDot::changeEvent(QEvent *event)
         }
     }
 }
-
 
 void QDot::set_default_options() {
     const float width = this->screen->width() / 2;
@@ -78,7 +76,7 @@ void QDot::set_default_options() {
 
     set_settings(options);
 
-    emit crosshair->update();
+    emit crosshair.operator*()->update();
 }
 
 
@@ -113,14 +111,14 @@ void QDot::load_label(QLabel *label, QDesktopWidget *desktop) {
     this->label = label;
     this->desktop = desktop;
 
-    crosshair = new Crosshair(label, desktop);
+    crosshair = std::make_shared<Crosshair *>(new Crosshair(label, desktop));
 }
 
 void QDot::show_crosshair() {
-    this->crosshair->render_crosshair_dot(options);
+    this->crosshair.operator*()->render_crosshair_dot(options);
 }
 
-Crosshair *QDot::get_crosshair() {
+std::shared_ptr<Crosshair *> QDot::get_crosshair() {
     return this->crosshair;
 }
 
@@ -134,5 +132,5 @@ void QDot::on_set_clicked() {
     options->dot = dot.path;
 
     set_settings(options);
-    emit crosshair->update();
+    emit crosshair.operator*()->update();
 }

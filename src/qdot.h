@@ -30,7 +30,7 @@ public:
     void load_settings(Options *options);
     void load_label(QLabel *label, QDesktopWidget *desktop);
     void show_crosshair();
-    Crosshair *get_crosshair();
+    std::shared_ptr<Crosshair *> get_crosshair();
 
 private slots:
     void changeEvent(QEvent *event);
@@ -41,11 +41,11 @@ private:
     void set_settings(Options *options);
     Ui::QDot *ui;
     QSettings *settings;
-    QWidget *screen;
+    QWidget * screen;
     Options *options;
     QLabel *label;
     QList<TDot> *dots;
     QDesktopWidget *desktop;
-    Crosshair *crosshair;
+    std::shared_ptr<Crosshair *> crosshair;
 };
 #endif // QDOT_H

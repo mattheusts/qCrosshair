@@ -55,9 +55,9 @@ int main(int argc, char *argv[])
     qdot.load_label(*label, *desktop);
     qdot.show_crosshair();
 
-    Crosshair *crosshair = qdot.get_crosshair();
+    std::shared_ptr<Crosshair *> crosshair = qdot.get_crosshair();
 
-    qApp->connect(crosshair, &Crosshair::update, *label, [&](){
+    qApp->connect(*crosshair, &Crosshair::update, *label, [&](){
         qdot.show_crosshair();
     });
 
