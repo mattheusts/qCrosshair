@@ -30,34 +30,34 @@ int main(int argc, char *argv[])
     QSystemTrayIcon *iconTray = new QSystemTrayIcon(QIcon(":/icon/QDot.ico"));
     iconTray->show();
 
-    auto *quit = new QAction("&Quit", qApp);
-    auto *settings = new QAction("&Settings");
+    auto quit = std::make_unique<QAction *>(new QAction("&Quit", qApp));
+    auto settings = std::make_unique<QAction *>(new QAction("&Settings"));
 
     // Close QDot
-    qApp->connect(quit, SIGNAL(triggered()), qApp, SLOT(closeAllWindows()));
+    qApp->connect(*quit.get(), SIGNAL(triggered()), qApp, SLOT(quit()));
 
     // Open settings
-    qApp->connect(settings, SIGNAL(triggered()), &qdot, SLOT(show()));
+    qApp->connect(*settings.get(), SIGNAL(triggered()), &qdot, SLOT(show()));
 
     QMenu *tryMenu = new QMenu(qApp->desktop());
-    tryMenu->addAction(settings);
+    tryMenu->addAction(*settings.get());
     tryMenu->addSeparator();
-    tryMenu->addAction(quit);
+    tryMenu->addAction(*quit.get());
 
     iconTray->setContextMenu(tryMenu);
     iconTray->showMessage(QString("QDot"), "Welcome to QDot, to configure it just click with the right mouse button on the icon.", QSystemTrayIcon::Information);
 
     iconTray->show();
 
-    QDesktopWidget *desktop = qApp->desktop();
-    QLabel *label = new QLabel(qApp->desktop());
+    auto desktop = std::make_shared<QDesktopWidget *>(qApp->desktop());
+    auto label = std::make_shared<QLabel *>(new QLabel(qApp->desktop()));
 
-    qdot.load_label(label, desktop);
+    qdot.load_label(*label, *desktop);
     qdot.show_crosshair();
 
     Crosshair *crosshair = qdot.get_crosshair();
 
-    qApp->connect(crosshair, &Crosshair::update, label, [&](){
+    qApp->connect(crosshair, &Crosshair::update, *label, [&](){
         qdot.show_crosshair();
     });
 
